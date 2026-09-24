@@ -1,0 +1,1176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brass & Shamrock Vapor Co. | High-Voltage Celtic Clouds</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --brass-light: #f4d068;
+      --brass-base: #c59b27;
+      --brass-dark: #7a5c10;
+      --copper: #b85d19;
+      --emerald-neon: #00ff88;
+      --emerald-glow: rgba(0, 255, 136, 0.4);
+      --celtic-gold: #ffd700;
+      --dark-iron: #121516;
+      --dark-slate: #1c2224;
+      --rivet-color: #e5b35a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--dark-iron);
+      color: #eaeaea;
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 20%, rgba(0, 255, 136, 0.08), transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(184, 93, 25, 0.12), transparent 50%),
+        linear-gradient(to bottom, #0f1213, #181e20);
+    }
+
+    /* Steampunk UI Elements */
+    .riveted-border {
+      border: 3px solid var(--brass-base);
+      box-shadow: 
+        inset 0 0 10px rgba(0,0,0,0.8),
+        0 0 15px var(--emerald-glow);
+      position: relative;
+    }
+
+    .riveted-border::after {
+      content: '';
+      position: absolute;
+      top: 3px; left: 3px; right: 3px; bottom: 3px;
+      border: 1px dashed var(--brass-light);
+      pointer-events: none;
+      opacity: 0.6;
+    }
+
+    /* Age Verification Modal */
+    #age-gate {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 10, 11, 0.95);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .age-card {
+      background: var(--dark-slate);
+      max-width: 500px;
+      width: 100%;
+      padding: 40px;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .age-card h2 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--celtic-gold);
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      text-shadow: 0 0 10px var(--brass-base);
+    }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(180deg, #1d1810 0%, #0d0f10 100%);
+      border-bottom: 3px solid var(--brass-base);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      border-bottom: 1px solid rgba(197, 155, 39, 0.3);
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      text-decoration: none;
+    }
+
+    .gear-spin {
+      width: 44px;
+      height: 44px;
+      border: 4px dashed var(--brass-light);
+      border-radius: 50%;
+      animation: spin 14s linear infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, var(--emerald-neon), var(--brass-dark));
+      box-shadow: 0 0 10px var(--emerald-neon);
+      color: #fff;
+      font-size: 20px;
+    }
+
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .brand-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 0 8px var(--emerald-neon);
+    }
+
+    .brand-title span { color: var(--brass-light); }
+
+    /* Mega Menu */
+    nav ul {
+      display: flex;
+      list-style: none;
+      justify-content: center;
+      position: relative;
+    }
+
+    nav > ul > li {
+      position: relative;
+      padding: 16px 20px;
+    }
+
+    nav > ul > li > a {
+      color: var(--brass-light);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    nav > ul > li:hover > a {
+      color: var(--emerald-neon);
+      text-shadow: 0 0 10px var(--emerald-neon);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--dark-slate);
+      min-width: 260px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.8);
+      border: 2px solid var(--brass-base);
+      z-index: 100;
+      padding: 10px 0;
+    }
+
+    nav > ul > li:hover .dropdown { display: block; }
+
+    .dropdown li {
+      position: relative;
+      list-style: none;
+    }
+
+    .dropdown li a {
+      display: block;
+      padding: 10px 20px;
+      color: #eaeaea;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.2s;
+    }
+
+    .dropdown li a:hover {
+      background: rgba(0, 255, 136, 0.1);
+      color: var(--emerald-neon);
+      padding-left: 25px;
+    }
+
+    .dropdown-sub {
+      display: none;
+      position: absolute;
+      left: 100%;
+      top: 0;
+      background: #14191a;
+      min-width: 250px;
+      border: 2px solid var(--copper);
+    }
+
+    .dropdown li:hover > .dropdown-sub { display: block; }
+
+    /* Hero: End of the Rainbow & Maeve */
+    .hero-banner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 520px;
+      background: linear-gradient(135deg, rgba(14, 18, 19, 0.9), rgba(28, 34, 36, 0.8)),
+                  repeating-linear-gradient(45deg, rgba(0,0,0,0.1) 0, rgba(0,0,0,0.1) 10px, transparent 10px, transparent 20px);
+      border-bottom: 4px solid var(--brass-base);
+      position: relative;
+      overflow: hidden;
+      align-items: center;
+      padding: 40px 8%;
+    }
+
+    /* Steampunk Rainbow Beam */
+    .neon-rainbow {
+      position: absolute;
+      top: -50px;
+      right: 15%;
+      width: 14px;
+      height: 140%;
+      background: linear-gradient(to bottom, #ff0055, #ff9900, #ffff00, #00ff88, #00ccff, #9900ff);
+      box-shadow: 0 0 25px var(--emerald-neon), 0 0 45px #ff9900;
+      transform: rotate(28deg);
+      opacity: 0.75;
+      filter: blur(1px);
+      z-index: 1;
+      animation: pulse-rainbow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse-rainbow {
+      0% { opacity: 0.5; filter: blur(2px); }
+      100% { opacity: 0.85; filter: blur(0px); }
+    }
+
+    .hero-content {
+      z-index: 2;
+      max-width: 600px;
+    }
+
+    .hero-tagline {
+      display: inline-block;
+      color: var(--emerald-neon);
+      border: 1px solid var(--emerald-neon);
+      padding: 6px 14px;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 15px;
+      background: rgba(0, 255, 136, 0.08);
+    }
+
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3rem;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-title em {
+      color: var(--celtic-gold);
+      font-style: normal;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    }
+
+    .hero-text {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      color: #b5c0c2;
+      margin-bottom: 28px;
+    }
+
+    .curator-badge-hero {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      background: rgba(184, 93, 25, 0.2);
+      border-left: 4px solid var(--copper);
+      padding: 12px 18px;
+    }
+
+    .curator-badge-hero img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 2px solid var(--brass-light);
+    }
+
+    /* Maeve Mascot Avatar Canvas / Stage */
+    .hero-mascot-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .mascot-portal {
+      width: 380px;
+      height: 460px;
+      background: radial-gradient(circle, rgba(0, 255, 136, 0.2) 0%, rgba(10, 15, 16, 0.85) 75%);
+      border: 6px solid var(--brass-base);
+      border-radius: 200px 200px 10px 10px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      box-shadow: 0 0 30px var(--brass-dark), inset 0 0 20px #000;
+      overflow: hidden;
+    }
+
+    .mascot-character {
+      width: 320px;
+      height: 400px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: float-slight 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes float-slight {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-8px); }
+    }
+
+    /* Mascot Visual Representation (CSS/SVG Vector Composite) */
+    .curator-portrait-svg {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(0,255,136,0.3));
+    }
+
+    .curator-speech {
+      position: absolute;
+      top: 25px;
+      right: 5px;
+      background: #fff;
+      color: #1a1a1a;
+      padding: 10px 15px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      max-width: 180px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      border: 2px solid var(--brass-base);
+    }
+    
+    .curator-speech::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 20px;
+      border-width: 10px 10px 0 0;
+      border-style: solid;
+      border-color: #fff transparent;
+    }
+
+    /* Product Filter Controls */
+    .catalog-wrapper {
+      max-width: 1350px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-header h2 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2.4rem;
+      color: var(--celtic-gold);
+      letter-spacing: 1px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: var(--dark-slate);
+      border: 1px solid var(--brass-dark);
+      color: var(--brass-light);
+      padding: 9px 18px;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: 0.25s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--brass-base);
+      color: #0d0f10;
+      border-color: var(--celtic-gold);
+      box-shadow: 0 0 12px var(--brass-light);
+    }
+
+    /* Product Cards Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .product-card {
+      background: #151a1c;
+      border: 2px solid #2a3437;
+      border-radius: 6px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--emerald-neon);
+      box-shadow: 0 6px 20px rgba(0, 255, 136, 0.15);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--copper);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 3px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .card-badge.curator-pick {
+      background: var(--emerald-neon);
+      color: #000;
+      box-shadow: 0 0 10px var(--emerald-neon);
+    }
+
+    .product-img-box {
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle, rgba(0,255,136,0.06), transparent 70%);
+      margin-bottom: 15px;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    .product-img-box svg {
+      width: 90px;
+      height: 90px;
+      fill: var(--brass-light);
+      filter: drop-shadow(0 0 8px rgba(197, 155, 39, 0.4));
+    }
+
+    .product-category-sub {
+      color: var(--emerald-neon);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .product-name {
+      font-size: 1.25rem;
+      color: #fff;
+      margin: 6px 0 10px;
+      font-weight: 700;
+      min-height: 50px;
+    }
+
+    .product-notes {
+      font-size: 0.9rem;
+      color: #9cb0b5;
+      margin-bottom: 16px;
+      flex-grow: 1;
+    }
+
+    .product-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--celtic-gold);
+    }
+
+    .btn-buy {
+      background: linear-gradient(135deg, var(--brass-light), var(--brass-dark));
+      color: #0d0f10;
+      font-family: 'Rajdhani', sans-serif;
+      font-weight: 700;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-buy:hover {
+      background: var(--emerald-neon);
+      box-shadow: 0 0 10px var(--emerald-neon);
+    }
+
+    /* Fixed Maeve Live Assistant Widget */
+    .maeve-widget {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      z-index: 999;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .maeve-callout {
+      background: #141b1d;
+      border: 2px solid var(--brass-base);
+      padding: 12px 18px;
+      border-radius: 8px 8px 0 8px;
+      max-width: 250px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+      display: none;
+      animation: popIn 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .maeve-callout.show { display: block; }
+
+    .maeve-callout h4 {
+      color: var(--emerald-neon);
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    .maeve-callout p {
+      font-size: 0.85rem;
+      color: #cfd8da;
+      line-height: 1.4;
+    }
+
+    .maeve-avatar-button {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      border: 3px solid var(--emerald-neon);
+      background: var(--dark-slate);
+      cursor: pointer;
+      overflow: hidden;
+      box-shadow: 0 0 15px var(--emerald-glow);
+      position: relative;
+      transition: transform 0.2s;
+    }
+
+    .maeve-avatar-button:hover { transform: scale(1.08); }
+
+    .maeve-avatar-button img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Footer */
+    footer {
+      background: #0b0e0f;
+      border-top: 3px solid var(--brass-dark);
+      padding: 40px 8% 20px;
+      margin-top: 60px;
+    }
+
+    .disclaimer-box {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 15px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #9aa8ab;
+      margin-bottom: 25px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .hero-banner { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+      .curator-badge-hero { justify-content: center; }
+      .neon-rainbow { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="age-gate">
+    <div class="age-card riveted-border">
+      <div class="gear-spin" style="margin: 0 auto 15px;">⚙</div>
+      <h2>Verification Required</h2>
+      <p style="color: #abbbc0; margin-bottom: 20px; font-size: 1.1rem;">
+        Welcome to Brass & Shamrock Vapor Co. By entering our steam-powered reserve, you certify you are of legal smoking age (21+ in the United States).
+      </p>
+      <div style="display: flex; gap: 15px; justify-content: center;">
+        <button class="btn-buy" style="padding: 12px 30px; font-size: 1.1rem;" onclick="confirmAge(true)">I AM 21 OR OLDER</button>
+        <button class="filter-btn" style="padding: 12px 25px;" onclick="confirmAge(false)">EXIT</button>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="top-bar">
+      <a href="#" class="brand-logo">
+        <div class="gear-spin">⚙</div>
+        <div class="brand-title">BRASS <span>&</span> SHAMROCK</div>
+      </a>
+      <div style="display: flex; align-items: center; gap: 20px;">
+        <span style="color: var(--emerald-neon); font-weight: 700; font-size: 0.95rem;">⚡ FREE AIRSHIP DISPATCH OVER $65</span>
+        <button class="btn-buy" style="padding: 6px 14px;">CART (0)</button>
+      </div>
+    </div>
+
+    <nav>
+      <ul>
+        <li><a href="#catalog" onclick="filterCategory('disposable')">Disposable Vapes</a></li>
+        
+        <li>
+          <a href="#catalog" onclick="filterCategory('juice')">Vape Juice ▾</a>
+          <ul class="dropdown">
+            <li>
+              <a href="#catalog" onclick="filterCategory('freebase')">Freebase E-Juice ▸</a>
+              <ul class="dropdown-sub">
+                <li><a href="#catalog" onclick="filterSubcategory('candy-freebase')">Candy Vape Juice</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('dessert-freebase')">Dessert Vape Juice</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('fruit-freebase')">Fruit Vape Juice</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('mint-freebase')">Mint Menthol Vape Juice</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('tobacco-freebase')">Tobacco Vape Juice</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('unflavored-freebase')">Unflavored Vape Juice</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#catalog" onclick="filterCategory('salt')">Salt Nicotine E-Juice ▸</a>
+              <ul class="dropdown-sub">
+                <li><a href="#catalog" onclick="filterSubcategory('candy-salt')">Candy Flavored Salt Nic</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('dessert-salt')">Dessert Creamy Salt Nic</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('fruit-salt')">Fruit Flavored Salt Nic</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('menthol-salt')">Mentholated Salt Nic</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('unflavored-salt')">Unflavored Salt Nic</a></li>
+                <li><a href="#catalog" onclick="filterSubcategory('tobacco-salt')">Tobacco Flavored Salt Nic</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="#catalog" onclick="filterCategory('pod')">Pod Systems</a></li>
+        
+        <li>
+          <a href="#catalog" onclick="filterCategory('mods')">Vape Mods ▾</a>
+          <ul class="dropdown">
+            <li><a href="#catalog" onclick="filterSubcategory('510-battery')">510 Batteries</a></li>
+            <li><a href="#catalog" onclick="filterSubcategory('sub-ohm-tanks')">Sub Ohm Tanks</a></li>
+          </ul>
+        </li>
+
+        <li>
+          <a href="#catalog" onclick="filterCategory('components')">Vape Components ▾</a>
+          <ul class="dropdown">
+            <li><a href="#catalog" onclick="filterSubcategory('coils')">Replacement Vape Coils</a></li>
+            <li><a href="#catalog" onclick="filterSubcategory('chargers')">Batteries & Chargers</a></li>
+            <li><a href="#catalog" onclick="filterSubcategory('glass')">Replacement Tank Glass</a></li>
+            <li><a href="#catalog" onclick="filterSubcategory('parts')">Replacement Parts</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero-banner">
+    <div class="neon-rainbow"></div>
+    
+    <div class="hero-content">
+      <span class="hero-tagline">☘ Beyond The Emerald Horizon</span>
+      <h1 class="hero-title">Forget The Pot O' Gold.<br><em>Find The Clouds.</em></h1>
+      <p class="hero-text">
+        Tired of finding fairy stories at rainbow's end? Maeve has calibrated her copper condensers to bring you the highest-performing coils, purest handcrafted salts, and most rugged steampunk mods in all the realm.
+      </p>
+      
+      <div class="curator-badge-hero riveted-border">
+        <svg width="60" height="60" viewBox="0 0 100 100" style="border-radius: 50%; background: #111;">
+          <circle cx="50" cy="50" r="45" fill="#1b2527"/>
+          <circle cx="50" cy="45" r="32" fill="#c0392b"/>
+          <path d="M25 45 Q50 15 75 45 Q50 35 25 45" fill="#e67e22"/>
+          <circle cx="50" cy="52" r="23" fill="#fcdbb0"/>
+          <circle cx="42" cy="50" r="4" fill="#00d2ff"/>
+          <circle cx="58" cy="50" r="4" fill="#00d2ff"/>
+          <circle cx="42" cy="50" r="1.5" fill="#000"/>
+          <circle cx="58" cy="50" r="1.5" fill="#000"/>
+          <path d="M43 62 Q50 68 57 62" stroke="#c0392b" stroke-width="2" fill="none"/>
+          <rect x="30" y="32" width="16" height="10" rx="3" fill="#c59b27" stroke="#333" stroke-width="1.5"/>
+          <rect x="54" y="32" width="16" height="10" rx="3" fill="#c59b27" stroke="#333" stroke-width="1.5"/>
+          <line x1="46" y1="37" x2="54" y2="37" stroke="#c59b27" stroke-width="2"/>
+        </svg>
+        <div>
+          <div style="font-weight: 700; color: var(--emerald-neon);">Maeve Gearhart, Master Curator</div>
+          <div style="font-size: 0.85rem; color: #abbbc0;">"Direct from my brass refinery to your pocket!"</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-mascot-showcase">
+      <div class="mascot-portal">
+        <div class="curator-speech">"Step right up! The coils are hot and the tank is full!"</div>
+        <svg class="curator-portrait-svg" viewBox="0 0 300 400">
+          <g id="maeve-full">
+            <path d="M 80 180 L 50 390 L 250 390 L 220 180 Z" fill="#0c4b33" stroke="#c59b27" stroke-width="3"/>
+            <path d="M 110 180 L 150 280 L 190 180" fill="#1b2527" stroke="#c59b27" stroke-width="2"/>
+            <circle cx="150" cy="300" r="8" fill="#ffd700"/>
+            <circle cx="150" cy="340" r="8" fill="#ffd700"/>
+            <path d="M 60 140 Q 50 50 150 40 Q 250 50 240 140 Q 260 220 230 260 Q 200 160 150 160 Q 100 160 70 260 Z" fill="#b33927"/>
+            <path d="M 85 100 Q 150 60 215 100 Q 180 80 150 80 Q 120 80 85 100" fill="#d35400"/>
+            <ellipse cx="150" cy="130" rx="42" ry="48" fill="#ffe3c2"/>
+            <ellipse cx="134" cy="125" rx="7" ry="8" fill="#fff"/>
+            <ellipse cx="166" cy="125" rx="7" ry="8" fill="#fff"/>
+            <circle cx="135" cy="125" r="5" fill="#00b4d8"/>
+            <circle cx="165" cy="125" r="5" fill="#00b4d8"/>
+            <circle cx="136" cy="124" r="2" fill="#fff"/>
+            <circle cx="166" cy="124" r="2" fill="#fff"/>
+            <circle cx="130" cy="138" r="1.5" fill="#d35400" opacity="0.6"/>
+            <circle cx="135" cy="141" r="1.5" fill="#d35400" opacity="0.6"/>
+            <circle cx="165" cy="141" r="1.5" fill="#d35400" opacity="0.6"/>
+            <circle cx="170" cy="138" r="1.5" fill="#d35400" opacity="0.6"/>
+            <ellipse cx="125" cy="138" rx="8" ry="4" fill="#ff7675" opacity="0.4"/>
+            <ellipse cx="175" cy="138" rx="8" ry="4" fill="#ff7675" opacity="0.4"/>
+            <path d="M 134 150 Q 150 168 166 150 Z" fill="#c0392b"/>
+            <g id="goggles" transform="translate(0, -10)">
+              <rect x="100" y="70" width="38" height="28" rx="6" fill="#c59b27" stroke="#111" stroke-width="3"/>
+              <circle cx="119" cy="84" r="10" fill="#00ff88" opacity="0.8"/>
+              <rect x="162" y="70" width="38" height="28" rx="6" fill="#c59b27" stroke="#111" stroke-width="3"/>
+              <circle cx="181" cy="84" r="10" fill="#00ff88" opacity="0.8"/>
+              <line x1="138" y1="84" x2="162" y2="84" stroke="#5a3d0b" stroke-width="5"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <main class="catalog-wrapper" id="catalog">
+    <div class="section-header">
+      <h2>The Clockwork Inventory</h2>
+      <p style="color: var(--brass-light); letter-spacing: 1px;">Every flavor formulated with precision; every component tested for high pressure.</p>
+    </div>
+
+    <div class="filter-pills">
+      <button class="filter-btn active" onclick="filterCatalog('all', this)">All Provisions</button>
+      <button class="filter-btn" onclick="filterCatalog('disposable', this)">Disposables</button>
+      <button class="filter-btn" onclick="filterCatalog('freebase', this)">Freebase Juice</button>
+      <button class="filter-btn" onclick="filterCatalog('salt', this)">Salt Nicotine</button>
+      <button class="filter-btn" onclick="filterCatalog('pod', this)">Pod Systems</button>
+      <button class="filter-btn" onclick="filterCatalog('mods', this)">Vape Mods</button>
+      <button class="filter-btn" onclick="filterCatalog('components', this)">Hardware Components</button>
+    </div>
+
+    <div class="product-grid" id="product-area">
+      </div>
+  </main>
+
+  <div class="maeve-widget">
+    <div class="maeve-callout" id="maeve-bubble">
+      <h4>Maeve Recommends:</h4>
+      <p id="maeve-text">Looking for smooth clouds? Try our Blarney Beltz sour apple mix!</p>
+    </div>
+    <div class="maeve-avatar-button" onclick="toggleMaeveTip()">
+      <svg viewBox="0 0 100 100" style="width: 100%; height: 100%; background: #121617;">
+        <circle cx="50" cy="45" r="30" fill="#c0392b"/>
+        <circle cx="50" cy="52" r="22" fill="#fcdbb0"/>
+        <circle cx="42" cy="50" r="3.5" fill="#00d2ff"/>
+        <circle cx="58" cy="50" r="3.5" fill="#00d2ff"/>
+        <path d="M43 62 Q50 67 57 62" stroke="#c0392b" stroke-width="2" fill="none"/>
+        <rect x="32" y="34" width="14" height="9" rx="2" fill="#c59b27"/>
+        <rect x="54" y="34" width="14" height="9" rx="2" fill="#c59b27"/>
+      </svg>
+    </div>
+  </div>
+
+  <footer>
+    <div class="disclaimer-box">
+      <strong>WARNING:</strong> This product contains nicotine. Nicotine is an addictive chemical. Minors under 21 years of age are strictly prohibited from purchasing or using these products. All vapor hardware items and e-liquids comply with applicable domestic standards.
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; color: #7f8e91; font-size: 0.9rem;">
+      <div>&copy; 2026 Brass & Shamrock Vapor Co. Built with pride and clockwork gears.</div>
+      <div style="display: flex; gap: 20px;">
+        <a href="#" style="color: var(--brass-light); text-decoration: none;">Age Verification Policy</a>
+        <a href="#" style="color: var(--brass-light); text-decoration: none;">Airship Dispatch Tracking</a>
+        <a href="#" style="color: var(--brass-light); text-decoration: none;">Terms of Service</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Product Data Store across all requested categories
+    const products = [
+      // Disposables
+      {
+        id: 1,
+        name: "AetherBar 15k Shamrock Chill",
+        category: "disposable",
+        subcategory: "disposable",
+        price: "$19.99",
+        badge: "Curator's Pick",
+        isCurator: true,
+        desc: "Candied granny smith apple layered with crisp Irish spearmint. 15,000 pressurized puffs with dual mesh coils.",
+        svgIcon: "disposable"
+      },
+      // Freebase: Candy
+      {
+        id: 2,
+        name: "Blarney Beltz Sour Apple",
+        category: "freebase",
+        subcategory: "candy-freebase",
+        price: "$16.99",
+        badge: "Freebase",
+        desc: "Tangy ribbons of mouth-puckering sour green apple laced with sweet powdered crystals. 70/30 VG/PG.",
+        svgIcon: "juice"
+      },
+      // Freebase: Dessert
+      {
+        id: 3,
+        name: "Dublin Cream & Toffee Pudding",
+        category: "freebase",
+        subcategory: "dessert-freebase",
+        price: "$17.49",
+        badge: "Freebase",
+        desc: "Rich Irish cream froth, caramelized brown butter toffee, and a slow-baked pudding base.",
+        svgIcon: "juice"
+      },
+      // Freebase: Fruit
+      {
+        id: 4,
+        name: "Killarney Kiwi Strawberry Blitz",
+        category: "freebase",
+        subcategory: "fruit-freebase",
+        price: "$16.49",
+        badge: "Freebase",
+        desc: "Wild Irish field strawberries mashed with sharp emerald kiwi nectar for an all-day fruit vapor.",
+        svgIcon: "juice"
+      },
+      // Freebase: Mint Menthol
+      {
+        id: 5,
+        name: "Celtic Frost Sub-Zero Peppermint",
+        category: "freebase",
+        subcategory: "mint-freebase",
+        price: "$15.99",
+        badge: "Freebase",
+        desc: "Pure alpine peppermint oil backed with a brisk Arctic draft. Sharp, crystal-clear throat hit.",
+        svgIcon: "juice"
+      },
+      // Freebase: Tobacco
+      {
+        id: 6,
+        name: "Galway Reserve Cured Flue Virginia",
+        category: "freebase",
+        subcategory: "tobacco-freebase",
+        price: "$17.99",
+        badge: "Freebase",
+        desc: "Traditional sun-cured Virginia leaf aged with subtle oak barrel notes and clover honey.",
+        svgIcon: "juice"
+      },
+      // Freebase: Unflavored
+      {
+        id: 7,
+        name: "Aether Pure Unflavored Freebase",
+        category: "freebase",
+        subcategory: "unflavored-freebase",
+        price: "$13.99",
+        badge: "Pure Base",
+        desc: "100% USP Kosher VG/PG neutral diluent. Odorless, crystal clear, zero sweetener added.",
+        svgIcon: "juice"
+      },
+      // Salt Nic: Candy
+      {
+        id: 8,
+        name: "Lucky Leprechaun Rainbow Drops Salt",
+        category: "salt",
+        subcategory: "candy-salt",
+        price: "$15.99",
+        badge: "Salt Nic",
+        desc: "Assorted hard candies bursting with citrus, grape, and raspberry notes condensed for low-wattage pods.",
+        svgIcon: "salt"
+      },
+      // Salt Nic: Dessert Creamy
+      {
+        id: 9,
+        name: "Banshee Custard & Vanilla Froth Salt",
+        category: "salt",
+        subcategory: "dessert-salt",
+        price: "$15.99",
+        badge: "Salt Nic",
+        desc: "Silky Madagascar vanilla bean whipped into slow-churned sweet custard. Velvet clouds in every pull.",
+        svgIcon: "salt"
+      },
+      // Salt Nic: Fruit
+      {
+        id: 10,
+        name: "Wicklow Wildberry Harvest Salt",
+        category: "salt",
+        subcategory: "fruit-salt",
+        price: "$15.99",
+        badge: "Curator's Pick",
+        isCurator: true,
+        desc: "Dark blackberries, hand-picked raspberries, and tart mountain currants balanced at 50/50 VG/PG.",
+        svgIcon: "salt"
+      },
+      // Salt Nic: Menthol
+      {
+        id: 11,
+        name: "Emerald Frostbite Spearmint Salt",
+        category: "salt",
+        subcategory: "menthol-salt",
+        price: "$15.99",
+        badge: "Salt Nic",
+        desc: "Sweet spearmint leaves infused with an intense blast of menthol frost. Crisp and clean.",
+        svgIcon: "salt"
+      },
+      // Salt Nic: Unflavored
+      {
+        id: 12,
+        name: "Ghost Cloud Pure Salt Base",
+        category: "salt",
+        subcategory: "unflavored-salt",
+        price: "$14.49",
+        badge: "Salt Nic",
+        desc: "Clean nicotine salts with zero flavoring agents. Formulated strictly for ultra-smooth nicotine satisfaction.",
+        svgIcon: "salt"
+      },
+      // Salt Nic: Tobacco
+      {
+        id: 13,
+        name: "Royal Dublin Cavendish Salt",
+        category: "salt",
+        subcategory: "tobacco-salt",
+        price: "$15.99",
+        badge: "Salt Nic",
+        desc: "Dark Cavendish pipe leaf sweetened under steam pressure. Rich, robust, and dignified aroma.",
+        svgIcon: "salt"
+      },
+      // Pod Systems
+      {
+        id: 14,
+        name: "Steampod Titan 40W Kit",
+        category: "pod",
+        subcategory: "pod",
+        price: "$39.99",
+        badge: "Hardware",
+        desc: "Zinc-brass chassis with an integrated analog dial readout. 1500mAh capacity with auto-draw sensor.",
+        svgIcon: "hardware"
+      },
+      // Mods: 510 Batteries
+      {
+        id: 15,
+        name: "Voltaic Dial 510 Twist Battery",
+        category: "mods",
+        subcategory: "510-battery",
+        price: "$18.50",
+        badge: "510 Mod",
+        desc: "Solid brass finish with knurled mechanical bottom-twist potentiometer (2.0V - 4.0V). Pre-heat functionality.",
+        svgIcon: "hardware"
+      },
+      // Mods: Sub Ohm Tanks
+      {
+        id: 16,
+        name: "The Kraken 28mm Pneumatic Tank",
+        category: "mods",
+        subcategory: "sub-ohm-tanks",
+        price: "$32.99",
+        badge: "Hardware",
+        desc: "6.5mL capacity bubble reservoir with knurled dual bottom airflow and leak-proof brass lock-ring.",
+        svgIcon: "hardware"
+      },
+      // Components: Coils
+      {
+        id: 17,
+        name: "Clockwork Micro-Mesh Coils (5-Pk)",
+        category: "components",
+        subcategory: "coils",
+        price: "$14.99",
+        badge: "Coils",
+        desc: "Kanthal honeycomb mesh rated at 0.15Ω (60-80W). Woven with untreated organic Egyptian cotton.",
+        svgIcon: "hardware"
+      },
+      // Components: Batteries Chargers
+      {
+        id: 18,
+        name: "Dynamo Dual 18650/21700 Smart Bay",
+        category: "components",
+        subcategory: "chargers",
+        price: "$24.99",
+        badge: "Charger",
+        desc: "High-amperage smart bay with LCD milliamp readouts and automatic reverse polarity shutdown.",
+        svgIcon: "hardware"
+      },
+      // Components: Replacement Glass
+      {
+        id: 19,
+        name: "Fortified Quartz Bubble Glass 6.5mL",
+        category: "components",
+        subcategory: "glass",
+        price: "$6.99",
+        badge: "Spares",
+        desc: "Thermal-shock resistant pyrex glass replacement bulb. Fits the Kraken 28mm Tank and common sub-ohms.",
+        svgIcon: "hardware"
+      },
+      // Components: Replacement Parts
+      {
+        id: 20,
+        name: "Overhaul Gasket & 810 Brass Tip Pack",
+        category: "components",
+        subcategory: "parts",
+        price: "$9.99",
+        badge: "Parts",
+        desc: "Set of 12 food-grade silicone O-rings, replacement peek insulators, and an 810 heat-sink brass drip tip.",
+        svgIcon: "hardware"
+      }
+    ];
+
+    // Icon generator for Steampunk Hardware / Bottles
+    function getSvg(type) {
+      if (type === 'juice' || type === 'salt') {
+        return `<svg viewBox="0 0 24 24"><path d="M12 2C11.45 2 11 2.45 11 3V5H8C6.9 5 6 5.9 6 7V20C6 21.1 6.9 22 8 22H16C17.1 22 18 21.1 18 20V7C18 5.9 17.1 5 16 5H13V3C13 2.45 12.55 2 12 2M10 7H14V9H10V7M8 11H16V19H8V11Z"/></svg>`;
+      } else if (type === 'disposable') {
+        return `<svg viewBox="0 0 24 24"><path d="M8 2H16V5H18V19C18 20.66 16.66 22 15 22H9C7.34 22 6 20.66 6 19V5H8V2M10 4V5H14V4H10M8 7V13H16V7H8Z"/></svg>`;
+      } else {
+        return `<svg viewBox="0 0 24 24"><path d="M12,15.5A3.5,3.5 0 0,1 8.5,12A3.5,3.5 0 0,1 12,8.5A3.5,3.5 0 0,1 15.5,12A3.5,3.5 0 0,1 12,15.5M19.43,12.97C19.47,12.65 19.5,12.33 19.5,12C19.5,11.67 19.47,11.34 19.43,11L21.54,9.37C21.73,9.22 21.78,8.95 21.66,8.73L19.66,5.27C19.54,5.05 19.27,4.96 19.05,5.05L16.56,6.05C16.04,5.66 15.5,5.32 14.87,5.07L14.5,2.42C14.46,2.18 14.25,2 14,2H10C9.75,2 9.54,2.18 9.5,2.42L9.13,5.07C8.5,5.32 7.96,5.66 7.44,6.05L4.95,5.05C4.73,4.96 4.46,5.05 4.34,5.27L2.34,8.73C2.21,8.95 2.27,9.22 2.46,9.37L4.57,11C4.53,11.34 4.5,11.67 4.5,12C4.5,12.33 4.53,12.65 4.57,12.97L2.46,14.63C2.27,14.78 2.21,15.05 2.34,15.27L4.34,18.73C4.46,18.95 4.73,19.03 4.95,18.95L7.44,17.94C7.96,18.34 8.5,18.68 9.13,18.93L9.5,21.58C9.54,21.82 9.75,22 10,22H14C14.25,22 14.46,21.82 14.5,21.58L14.87,18.93C15.5,18.67 16.04,18.34 16.56,17.94L19.05,18.95C19.27,19.03 19.54,18.95 19.66,18.73L21.66,15.27C21.78,15.05 21.73,14.78 21.54,14.63L19.43,12.97Z"/></svg>`;
+      }
+    }
+
+    // Render Product Cards
+    function renderProducts(items) {
+      const container = document.getElementById('product-area');
+      container.innerHTML = '';
+      
+      if(items.length === 0) {
+        container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--brass-light); padding: 40px;">No inventory found matching these parameters, lad! Maeve is forging more.</p>`;
+        return;
+      }
+
+      items.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        card.innerHTML = `
+          <div class="card-badge ${p.isCurator ? 'curator-pick' : ''}">${p.badge}</div>
+          <div class="product-img-box">
+            ${getSvg(p.svgIcon)}
+          </div>
+          <div class="product-category-sub">${p.subcategory.replace('-', ' ')}</div>
+          <div class="product-name">${p.name}</div>
+          <div class="product-notes">${p.desc}</div>
+          <div class="product-meta">
+            <div class="product-price">${p.price}</div>
+            <button class="btn-buy" onclick="addToCart('${p.name}')">ADD TO MOD</button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Interactive Filters
+    function filterCatalog(category, btnElement) {
+      if (btnElement) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      if (category === 'all') {
+        renderProducts(products);
+        updateMaeveDialogue("Browsing the full brass refinery! Let me know if you need coils or nic salts.");
+      } else {
+        const filtered = products.filter(item => item.category === category);
+        renderProducts(filtered);
+        updateMaeveDialogue(`Showing all our choice ${category.toUpperCase()} items. Top tier quality!`);
+      }
+    }
+
+    function filterCategory(cat) {
+      filterCatalog(cat, null);
+      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterSubcategory(subcat) {
+      const filtered = products.filter(item => item.subcategory === subcat);
+      renderProducts(filtered);
+      document.getElementById('catalog').scrollIntoView({ behavior: 'smooth' });
+      updateMaeveDialogue(`Zeroing in on: ${subcat.replace('-', ' ').toUpperCase()}! Hand-inspected by yours truly.`);
+    }
+
+    // Maeve Interactive Dialogue Manager
+    const maeveTips = [
+      "Running sub-ohm coils? Maeve recommends a 70/30 freebase e-juice for maximum vapor density!",
+      "Salt nicotine delivers rapid satisfaction at lower wattages—perfect for our Steampod Titan.",
+      "Always prime those fresh mesh coils with 5 drops directly on the cotton before firing!",
+      "Did you know? My condenser extracts 100% genuine flavor without gunking up your elements!"
+    ];
+
+    function updateMaeveDialogue(text) {
+      const bubble = document.getElementById('maeve-bubble');
+      const textEl = document.getElementById('maeve-text');
+      textEl.innerText = text;
+      bubble.classList.add('show');
+      setTimeout(() => {
+        bubble.classList.remove('show');
+      }, 5500);
+    }
+
+    function toggleMaeveTip() {
+      const randomTip = maeveTips[Math.floor(Math.random() * maeveTips.length)];
+      updateMaeveDialogue(randomTip);
+    }
+
+    // Cart Notification
+    function addToCart(name) {
+      updateMaeveDialogue(`Right on! "${name}" was loaded into your airship cargo crate!`);
+    }
+
+    // Age Verification Logic
+    function confirmAge(isOfAge) {
+      if (isOfAge) {
+        document.getElementById('age-gate').style.display = 'none';
+        sessionStorage.setItem('verified_age', 'true');
+        setTimeout(() => {
+          updateMaeveDialogue("Welcome to the Brass & Shamrock! Maeve at your service!");
+        }, 800);
+      } else {
+        window.location.href = "https://www.google.com";
+      }
+    }
+
+    // Initial State Check
+    window.addEventListener('DOMContentLoaded', () => {
+      if(sessionStorage.getItem('verified_age') === 'true') {
+        document.getElementById('age-gate').style.display = 'none';
+      }
+      renderProducts(products);
+    });
+  </script>
+</body>
+</html>
